@@ -46,6 +46,16 @@ def add_product():
     conn.close()
     return jsonify({"status": "success"})
 
+@app.route('/seed')
+def seed():
+    conn = sqlite3.connect(DB)
+    conn.execute("INSERT INTO products (name, image, sizes, price) VALUES (?, ?, ?, ?)",
+                 ("Ashwathas Tee", "https://via.placeholder.com/300", "S,M,L", 799))
+    conn.commit()
+    conn.close()
+    return jsonify({"message": "Seeded product"})
+
+
 if __name__ == '__main__':
     init_db()
     app.run(host='0.0.0.0', port=10000, debug=True)
