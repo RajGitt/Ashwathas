@@ -5,7 +5,7 @@ function App() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-  axios.get('https://ashwathas.onrender.com/products')
+  axios.get('https://ashwathas.onrender.com')
     .then(res => setProducts(res.data))
     .catch(err => console.error("Failed to fetch products:", err));
 }, []);
