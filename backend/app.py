@@ -20,6 +20,10 @@ def init_db():
     conn.commit()
     conn.close()
 
+@app.route('/')
+def home():
+    return "Ashwathas backend is running!"
+
 @app.route('/products', methods=['GET'])
 def get_products():
     conn = sqlite3.connect(DB)
