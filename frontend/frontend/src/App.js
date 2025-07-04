@@ -5,11 +5,10 @@ function App() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-  axios.get('https://ashwathas.onrender.com')
+  axios.get('https://ashwathas.onrender.com/products') // ✅ Correct endpoint
     .then(res => setProducts(res.data))
     .catch(err => console.error("Failed to fetch products:", err));
 }, []);
-
 
   return (
     <div className="bg-[#98be91] min-h-screen text-gray-900 font-serif">
