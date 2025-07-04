@@ -5,9 +5,34 @@ function App() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/products')
-      .then(res => setProducts(res.data));
-  }, []);
+  axios.get('https://ashwathas.onrender.com/products')
+    .then(res => {
+      console.log("Fetched products:", res.data);  // ✅ Log to verify
+      setProducts(res.data);
+    })
+    .catch(err => console.error("Failed to fetch products:", err));
+}, []);
+
+      <section className="p-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {products.length === 0 ? (
+          <p className="col-span-full text-center text-xl text-white">No products available.</p>
+        ) : (
+          products.map(p => (
+            <div key={p.id} className="bg-white p-4 rounded shadow text-center">
+              <img src={p.image} alt={p.name} className="h-48 w-full object-cover rounded" />
+              <h2 className="mt-2 text-lg font-semibold">{p.name}</h2>
+              <p className="text-gray-600">Sizes: {p.sizes.join(', ')}</p>
+              <p className="mt-1 font-bold">₹{p.price}</p>
+              <div className="mt-2 flex justify-center space-x-4">
+                <button>♥</button>
+                <button>🛒</button>
+              </div>
+            </div>
+          ))
+        )}
+      </section>
+  
+
 
   return (
     <div className="bg-[#98be91] min-h-screen text-gray-900 font-serif">
@@ -51,3 +76,9 @@ function App() {
 }
 
 export default App;
+
+
+
+
+
+
